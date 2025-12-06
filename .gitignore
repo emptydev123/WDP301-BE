@@ -12,8 +12,7 @@ yarn-error.log*
 .env
 .env.*.local
 
-# Firebase keys or sensitive JSON
-*.json
+
 
 # Build outputs
 dist/

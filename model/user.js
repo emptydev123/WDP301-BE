@@ -25,14 +25,9 @@ const userSchema = new schema({
     },
     role: {
         type: String,
-        enum: ['customer', 'staff', 'technical', 'admin'],
-        default: 'customer'
+        enum: ['member', 'leader', 'staff', 'treasurer'],
+        default: 'member'
     },
-    provider: {
-        type: String,
-        enum: ["local", "google"],
-        default: "local"
-    }
 }, { timestamps: true })
 const user = mongoose.model('User', userSchema);
 module.exports = user

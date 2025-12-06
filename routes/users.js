@@ -80,67 +80,6 @@ router.post('/register', user.registerUser);
  */
 router.post('/login', user.login);
 
-/**
- * @swagger
- * /api/users/getprofile:
- *   get:
- *     summary: Lấy profile của user hiện tại
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Lấy profile thành công
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 user:
- *       401:
- *         description: Unauthorized / Token invalid
- *       404:
- *         description: Profile không tìm thấy
- */
-router.get('/getprofile', auth.authMiddleWare,
-    auth.requireRole('customer', 'staff', 'admin'),
-    user.getProfileUser
-);
-
-/**
- * @swagger
- * /api/users/getallprofile:
- *   get:
- *     summary: Lấy tất cả user (chỉ admin)
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Lấy danh sách users thành công
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 users:
- *                   type: array
- *                 count:
- *                   type: integer
- *                   example: 10
- *       401:
- *         description: Unauthorized / Token invalid
- *       403:
- *         description: Forbidden (không phải admin)
- */
-router.get('/getallprofile', auth.authMiddleWare,
-    auth.requireRole('admin',),
-    user.getAllProfileUsers
-);
-
-router.post('/loginfirebase',
-    user.loginGoogle
-)
 
 
 module.exports = router;
